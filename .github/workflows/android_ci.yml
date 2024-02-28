@@ -19,6 +19,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Disk Usage
+        run: df -h
+
       - name: Delete some stuff to free up disk space
         run: |
           sudo rm -rf /usr/share/dotnet
@@ -33,6 +36,9 @@ jobs:
                 system("rm -rf '"$ANDROID_SDK_ROOT/ndk/"'" $0);
               }
             }'
+
+      - name: Disk Usage
+        run: df -h
 
       - name: rustup target add aarch64-linux-android arm-linux-androideabi x86_64-linux-android
         run: rustup target add aarch64-linux-android arm-linux-androideabi x86_64-linux-android
@@ -61,6 +67,9 @@ jobs:
           touch ~/.gradle/gradle.properties
           echo "COMM_UPLOAD_STORE_FILE=$(pwd)/android_key_store.keystore" >> ~/.gradle/gradle.properties
           echo "COMM_UPLOAD_KEY_ALIAS=AndroidSigningKey" >> ~/.gradle/gradle.properties
+
+      - name: Disk Usage
+        run: df -h
 
       - name: Build with Gradle
         working-directory: ./native/android
