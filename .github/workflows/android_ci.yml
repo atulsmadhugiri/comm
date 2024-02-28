@@ -28,6 +28,9 @@ jobs:
           sudo rm -rf /opt/ghc
           sudo rm -rf /usr/local/share/boost
 
+      - name: Disk Usage
+        run: df -h
+
       - name: Clear unused NDKs
         run: |
           ls -1 "$ANDROID_SDK_ROOT/ndk" |
@@ -43,15 +46,24 @@ jobs:
       - name: rustup target add aarch64-linux-android arm-linux-androideabi x86_64-linux-android
         run: rustup target add aarch64-linux-android arm-linux-androideabi x86_64-linux-android
 
+      - name: Disk Usage
+        run: df -h
+
       - name: Install Protobuf compiler
         working-directory: ./scripts
         run: sudo ./install_protobuf.sh
+
+      - name: Disk Usage
+        run: df -h
 
       - name: Fix node-gyp
         run: python3 -m pip install packaging setuptools
 
       - name: yarn ci-cleaninstall
         run: yarn ci-cleaninstall
+
+      - name: Disk Usage
+        run: df -h
 
       - name: Save ANDROID_KEY_STORE_B64 to file
         env:
