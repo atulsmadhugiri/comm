@@ -55,6 +55,7 @@ jobs:
       - name: Build with Gradle
         working-directory: ./native/android
         env:
+          JAVA_HOME: JAVA_HOME_17_arm64
           ANDROID_SIGNING_PASSWORD: ${{secrets.ANDROID_SIGNING_PASSWORD}}
         run: ./gradlew bundleRelease "-Dorg.gradle.jvmargs=-Xmx6g -XX:MaxMetaspaceSize=6g"
 
