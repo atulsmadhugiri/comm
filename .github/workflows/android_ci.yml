@@ -41,7 +41,7 @@ jobs:
         run: echo "$ANDROID_KEY_STORE_B64" > ANDROID_KEY_STORE_B64.b64
 
       - name: Save ANDROID_KEY_STORE to file
-        run: base64 -d ANDROID_KEY_STORE_B64.b64 > android_key_store.keystore
+        run: base64 -d -i ANDROID_KEY_STORE_B64.b64 -o android_key_store.keystore
 
       - name: Configure gradle.properties
         run: |
